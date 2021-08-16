@@ -4,7 +4,7 @@
  * @Author: Logivy
  * @Date: 2021-07-29 20:40:30
  * @LastEditors: Logivy
- * @LastEditTime: 2021-08-10 22:11:31
+ * @LastEditTime: 2021-08-17 00:20:51
 -->
 <template>
   <div id="detail">
@@ -30,7 +30,7 @@ export default {
     return {
       iid: null,
       topImages: null,
-      goods:null
+      goods:{},
     };
   },
   created() {
@@ -39,7 +39,6 @@ export default {
     // 2、根据iid请求
     getDetail(this.iid).then((res) => {
       // 顶部图片
-      console.log(res);
       // 1、获取轮播图数据
       const data = res.result
       this.topImages = data.itemInfo.topImages;
