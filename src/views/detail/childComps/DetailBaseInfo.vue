@@ -4,7 +4,7 @@
  * @Author: Logivy
  * @Date: 2021-08-10 22:01:23
  * @LastEditors: Logivy
- * @LastEditTime: 2021-08-17 00:46:27
+ * @LastEditTime: 2021-08-18 22:36:58
 -->
 <template>
   <div v-if="Object.keys(goods).length !== 0" class="base-info">
@@ -22,7 +22,7 @@
         <div class="info-service">
             <span class="info-service-item" v-for="index in goods.services.length-1" :key="index">
                 <img :src="goods.services[index-1].icon" alt="">
-                <span class="info-service-title">{{goods.services[index-1].name}}</span>
+                <span>{{goods.services[index-1].name}}</span>
             </span>
         </div>
   </div>
@@ -38,10 +38,6 @@ export default {
           }
       }
   }, 
-
-  created(){
-      console.log(this.goods)
-  }
 };
 </script>
 <style scoped>
