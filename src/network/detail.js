@@ -4,7 +4,7 @@
  * @Author: Logivy
  * @Date: 2021-07-29 22:05:44
  * @LastEditors: Logivy
- * @LastEditTime: 2021-08-18 22:39:44
+ * @LastEditTime: 2021-08-26 00:37:04
  */
 
 import {request} from "./request";
@@ -35,5 +35,14 @@ export class Shop {
     this.sells = shopInfo.cSells;
     this.score = shopInfo.score;
     this.goodsCount = shopInfo.cGoods
+  }
+}
+
+export class GoodsParam{
+  constructor(info, rule) {
+    // 注: images可能没有值(某些商品有值, 某些没有值)
+    this.image = info.images ? info.images[0] : '';
+    this.infos = info.set;
+    this.sizes = rule.tables;
   }
 }

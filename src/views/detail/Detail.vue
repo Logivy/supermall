@@ -4,37 +4,49 @@
  * @Author: Logivy
  * @Date: 2021-07-29 20:40:30
  * @LastEditors: Logivy
- * @LastEditTime: 2021-08-18 22:45:37
+ * @LastEditTime: 2021-08-26 10:13:43
 -->
 <template>
   <div id="detail">
     <detail-nav-bar />
-    <detail-swiper  :topImages="topImages"  />
-    <detail-base-info :goods="goods"></detail-base-info>
-    <detail-shop-info :shop="shop"></detail-shop-info>
+    <scroll class="wrapper" >
+      <detail-swiper :top-images="topImages" />
+      <detail-base-info :goods="goods" />
+      <detail-shop-info :shop="shop" />
+      <detail-Image-info :image-info="detailInfo" />
+      <detail-param-info :param-info="goodsParam"></detail-param-info>
+    </scroll>
   </div>
 </template>
 <script>
 import DetailNavBar from "./childComps/DetailNavBar";
+import Scroll from "components/common/scroll/Scroll";
 import DetailSwiper from "./childComps/DetailSwiper";
-import DetailBaseInfo from './childComps/DetailBaseInfo';
-import DetailShopInfo from './childComps/DetailShopInfo';
+import DetailBaseInfo from "./childComps/DetailBaseInfo";
+import DetailShopInfo from "./childComps/DetailShopInfo";
+import DetailImageInfo from "./childComps/DetailImageInfo";
+import DetailParamInfo from "./childComps/DetailParamInfo";
 
-import { getDetail,GoodsInfo,Shop } from "network/detail";
+import { getDetail, GoodsInfo, Shop, GoodsParam } from "network/detail";
 export default {
   name: "Detail",
   components: {
     DetailNavBar,
     DetailSwiper,
     DetailBaseInfo,
-    DetailShopInfo
+    DetailShopInfo,
+    DetailImageInfo,
+    DetailParamInfo,
+    Scroll,
   },
   data() {
     return {
       iid: null,
       topImages: null,
-      goods:{},
-      shop:{}
+      goods: {},
+      shop: {},
+      detailInfo: {},
+      goodsParam:{}
     };
   },
   created() {
@@ -44,20 +56,53 @@ export default {
     getDetail(this.iid).then((res) => {
       // 顶部图片
       // 1、获取轮播图数据
-      const data = res.result
+      const data = res.result;
       this.topImages = data.itemInfo.topImages;
-      
+
       // 2、获取商品信息
-      this.goods = new GoodsInfo(data.itemInfo, data.columns, data.shopInfo.services)
-      
+      this.goods = new GoodsInfo(
+        data.itemInfo,
+        data.columns,
+        data.shopInfo.services
+      );
+
       //3、获取商家信息
       this.shop = new Shop(data.shopInfo);
-      console.log(this.shop);
+
+      // 4.详情的信息
+      this.detailInfo = data.detailInfo;
+
+      // 5.商品参数
+      this.goodsParam = new GoodsParam(data.itemParams.info,data.itemParams.rule);
     });
   },
+  methods: {
+    contentScroll(position) {
+      // 判断backTop
+      if (position.y < -500) {
+        this.isShowBackTop = true;
+      } else {
+        this.isShowBackTop = false;
+      }
 
+      // 判断tabControl2吸顶
+      this.isTabFixed = -position.y > this.tabOffsetTop;
+    },
+  },
 };
 </script>
 <style scoped>
+#detail{
+  position: relative;
+  z-index: 9;
+  background-color: #fff;
+  height: 100vh;
+}
+
+.wrapper {
+  height: calc(100% - 44px);
+  overflow: hidden;
+}
+
 </style>
 

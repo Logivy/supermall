@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start": "npm run serve",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "dll": "vue-cli-service dll"
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "axios": "^0.21.1",

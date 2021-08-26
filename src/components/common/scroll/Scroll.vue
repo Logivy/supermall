@@ -4,11 +4,11 @@
  * @Author: Logivy
  * @Date: 2021-05-16 09:36:06
  * @LastEditors: Logivy
- * @LastEditTime: 2021-07-26 21:11:11
+ * @LastEditTime: 2021-08-25 21:00:22
 -->
 <template>
-  <div class="wrapper" ref="wrapper">
-    <div class="content">
+  <div id="wrapper" ref="wrapper">
+    <div id="content">
       <slot></slot>
     </div>
   </div>
@@ -39,9 +39,9 @@ export default {
       probeType: this.probeType,
       pullUpLoad: this.pullUpLoad,
       click: true,
-      // 更新自动计算image
-      // observeImage: true,
-      // observeDOM: true,
+      // 更新自动计算image,DOM
+      observeImage: true,
+      observeDOM: true,
     });
 
     // 监听滚动位置
@@ -76,4 +76,5 @@ export default {
 };
 </script>
 <style scoped>
+
 </style>
