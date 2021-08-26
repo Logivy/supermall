@@ -4,13 +4,17 @@
  * @Author: Logivy
  * @Date: 2021-07-29 22:05:44
  * @LastEditors: Logivy
- * @LastEditTime: 2021-08-26 00:37:04
+ * @LastEditTime: 2021-08-26 14:32:26
  */
 
 import {request} from "./request";
 
 export function getDetail(iid) {
   return request({ url: "/detail", params: { iid } });
+}
+
+export function getRecommend(){
+  return request({url:"/recommend"})
 }
 
 

@@ -4,11 +4,12 @@
  * @Author: Logivy
  * @Date: 2021-05-11 17:08:02
  * @LastEditors: Logivy
- * @LastEditTime: 2021-07-31 14:59:54
+ * @LastEditTime: 2021-08-26 15:53:59
 -->
 <template>
   <div class="goods-item" @click="itemClick">
-    <img :src="goodsItem.show.img" alt="" @load="imageLoad" />
+    <!-- <img :src="getImg" alt="" @load="imageLoad" /> -->
+    <img  v-lazy="getImg" :key="getImg">
     <div class="goods-info">
       <p>{{ goodsItem.title }}</p>
       <span class="price">¥{{ goodsItem.price }}</span>
@@ -33,19 +34,24 @@ export default {
   methods: {
     imageLoad() {
       // 提交一个事件
-      this.$bus.$emit("itemImageLoad");
+      // this.$bus.$emit("itemImageLoad");
     },
     itemClick(){
-      this.$router.push('/detail/'+this.goodsItem.iid)
+      let iid = this.goodsItem.iid
+      this.$router.push(`/detail/${iid}`)
     }
   },
+  computed:{
+    getImg(){
+      return this.goodsItem.img || this.goodsItem.image || this.goodsItem.show.img;
+    }
+  }
 };
 </script>
 <style scoped>
 .goods-item {
   padding-bottom: 10px;
   position: relative;
-
   width: 48%;
 }
 

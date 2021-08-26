@@ -44,7 +44,7 @@ export default {
       //2、设置gridViewEl的内边距
       gridEl.style.padding = `${this.vMargin}px ${this.hMargin}px`;
     
-    // 3、计算gridViewEl的宽度
+    // 3、计算item的宽度
     let itemWidth = (gridEl.clientWidth - 2 *this.hMargin)
     },
   },
