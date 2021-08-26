@@ -4,7 +4,7 @@
  * @Author: Logivy
  * @Date: 2021-08-10 22:01:23
  * @LastEditors: Logivy
- * @LastEditTime: 2021-08-18 22:36:58
+ * @LastEditTime: 2021-08-26 00:18:31
 -->
 <template>
   <div v-if="Object.keys(goods).length !== 0" class="base-info">
@@ -102,7 +102,7 @@ export default {
 }
 
 .info-service-item span{
-    font-size: 13px;
+    font-size: 12px;
     color: #333;
 }
 
