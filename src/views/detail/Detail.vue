@@ -1,25 +1,26 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: Logivy
- * @Date: 2021-07-29 20:40:30
- * @LastEditors: Logivy
- * @LastEditTime: 2021-08-26 16:05:09
--->
+
 <template>
   <div id="detail">
-    <detail-nav-bar />
-    <scroll class="wrapper">
-      <detail-swiper :top-images="topImages" />
+    <detail-nav-bar @titleClick="titleClick" />
+    <scroll class="wrapper" ref="scroll">
+      <detail-swiper :top-images="topImages" @imageLoad="imageLoad" />
       <detail-base-info :goods="goods" />
       <detail-shop-info :shop="shop" />
-      <detail-Image-info :image-info="detailInfo" />
-      <detail-param-info :param-info="goodsParam"></detail-param-info>
-      <detail-comment-info :comment-info="commentInfo"></detail-comment-info>
-      <detail-recommend-info :recommend-list="recommendList"></detail-recommend-info>
+      <detail-Image-info :image-info="detailInfo" @imageLoad="imageLoad" />
+      <detail-param-info
+        ref="param"
+        :param-info="goodsParam"
+      ></detail-param-info>
+      <detail-comment-info
+        ref="comment"
+        :comment-info="commentInfo"
+      ></detail-comment-info>
+      <detail-recommend-info
+        ref="recommend"
+        :recommend-list="recommendList"
+      ></detail-recommend-info>
     </scroll>
     <back-top @click.native="backClick" v-show="isShowBackTop" />
-
   </div>
 </template>
 <script>
@@ -35,7 +36,6 @@ import DetailRecommendInfo from "./childComps/DetailRecommendInfo";
 
 import BackTop from "@/components/content/backTop/BackTop";
 
-
 import {
   getDetail,
   getRecommend,
@@ -43,6 +43,7 @@ import {
   Shop,
   GoodsParam,
 } from "network/detail";
+import { debounce } from "common/utils";
 export default {
   name: "Detail",
   components: {
@@ -55,7 +56,7 @@ export default {
     DetailCommentInfo,
     DetailRecommendInfo,
     Scroll,
-    BackTop
+    BackTop,
   },
   data() {
     return {
@@ -66,20 +67,35 @@ export default {
       detailInfo: {},
       goodsParam: {},
       commentInfo: {},
-      recommendList: []
+      recommendList: [],
+      isShowBackTop: false,
+      themeTopYs: [],
+      getThemeTopY: null,
     };
   },
   created() {
     this._getDatailData();
     this._getRecommentData();
+    this.getThemeTopY = debounce(() => {
+      this.themeTopYs = [];
+
+      this.themeTopYs.push(0);
+      this.themeTopYs.push(this.$refs.param.$el.offsetTop);
+      this.themeTopYs.push(this.$refs.comment.$el.offsetTop);
+      this.themeTopYs.push(this.$refs.recommend.$el.offsetTop);
+      console.log(this.themeTopYs);
+    });
   },
   methods: {
-
-    _getRecommentData(){
-      getRecommend().then((res,err)=>{
-        if(err) return 
-        this.recommendList = res.data.list
-      })
+    imageLoad() {
+      this.getThemeTopY();
+      console.log(123);
+    },
+    _getRecommentData() {
+      getRecommend().then((res, err) => {
+        if (err) return;
+        this.recommendList = res.data.list;
+      });
     },
     _getDatailData() {
       //   1、保持传入的iid
@@ -116,16 +132,9 @@ export default {
         this.commentInfo = data.rate.list[0];
       });
     },
-    contentScroll(position) {
-      // 判断backTop
-      if (position.y < -500) {
-        this.isShowBackTop = true;
-      } else {
-        this.isShowBackTop = false;
-      }
 
-      // 判断tabControl2吸顶
-      this.isTabFixed = -position.y > this.tabOffsetTop;
+    titleClick(index) {
+      this.$refs.scroll.scrollTo(0, -this.themeTopYs[index] + 44, 100);
     },
   },
 };

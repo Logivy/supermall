@@ -3,8 +3,8 @@
  * @version: 
  * @Author: Logivy
  * @Date: 2021-08-19 23:55:02
- * @LastEditors: Logivy
- * @LastEditTime: 2021-08-26 10:13:33
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-09-04 16:00:28
 -->
 <template>
   <div v-if="Object.keys(imageInfo).length" class="goods-info">
@@ -30,12 +30,25 @@
 <script>
 export default {
   name: "DetailImageInfo",
+  data() {
+    return {
+      isLoad: false,
+    };
+  },
   props: {
     imageInfo: {
       type: Object,
       default() {
         return {};
       },
+    },
+  },
+  methods: {
+    imageLoad() {
+      if (!this.isLoad) {
+        this.$emit("imageLoad");
+        this.isLoad = true;
+      }
     },
   },
 };

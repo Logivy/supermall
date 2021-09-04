@@ -3,8 +3,8 @@
  * @version: 
  * @Author: Logivy
  * @Date: 2021-07-29 21:33:04
- * @LastEditors: Logivy
- * @LastEditTime: 2021-08-26 10:40:55
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-08-29 19:31:20
 -->
 <template>
   <div>
@@ -43,6 +43,7 @@ export default {
   methods: {
     titleClick(index) {
       this.currentIndex = index;
+      this.$emit("titleClick",index)
     },
     backClick(){
         this.$router.back()
