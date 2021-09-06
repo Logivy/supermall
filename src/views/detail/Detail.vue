@@ -21,6 +21,7 @@
       ></detail-recommend-info>
     </scroll>
     <back-top @click.native="backClick" v-show="isShowBackTop" />
+    <detail-bottom-bar @addToCart="addToCart" />
   </div>
 </template>
 <script>
@@ -33,9 +34,9 @@ import DetailImageInfo from "./childComps/DetailImageInfo";
 import DetailParamInfo from "./childComps/DetailParamInfo";
 import DetailCommentInfo from "./childComps/DetailCommentInfo";
 import DetailRecommendInfo from "./childComps/DetailRecommendInfo";
+import DetailBottomBar from "./childComps/DetailBottomBar";
 
-import BackTop from "@/components/content/backTop/BackTop";
-
+import {backTopMixin} from 'common/mixins';
 import {
   getDetail,
   getRecommend,
@@ -55,9 +56,12 @@ export default {
     DetailParamInfo,
     DetailCommentInfo,
     DetailRecommendInfo,
+    DetailBottomBar,
     Scroll,
-    BackTop,
   },
+
+  mixins:[backTopMixin],
+
   data() {
     return {
       iid: null,
@@ -68,11 +72,11 @@ export default {
       goodsParam: {},
       commentInfo: {},
       recommendList: [],
-      isShowBackTop: false,
       themeTopYs: [],
       getThemeTopY: null,
     };
   },
+
   created() {
     this._getDatailData();
     this._getRecommentData();
@@ -87,11 +91,7 @@ export default {
     });
   },
   methods: {
-    imageLoad() {
-      this.getThemeTopY();
-      console.log(123);
-    },
-    _getRecommentData() {
+        _getRecommentData() {
       getRecommend().then((res, err) => {
         if (err) return;
         this.recommendList = res.data.list;
@@ -143,7 +143,22 @@ export default {
       //     //   console.log(i)
       //     // }
       // }
-    }
+      this.listenShowBackTop(position);
+    },
+
+    addToCart(){
+      const obj = {};
+      obj.iid = this.iid;
+      obj.imgURL = this.topImages[0];
+      obj.title = this.goods.title;
+      obj.desc = this.goods.desc;
+      obj.newPrice = this.goods.realPrice;
+      this.$store.dispatch("addCart",obj)
+    },
+    imageLoad() {
+      this.getThemeTopY();
+      console.log(123);
+    },
   },
 };
 </script>
@@ -156,7 +171,7 @@ export default {
 }
 
 .wrapper {
-  height: calc(100% - 44px);
+  height: calc(100% - 44px - 58px);
   overflow: hidden;
 }
 </style>

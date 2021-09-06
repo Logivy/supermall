@@ -41,10 +41,10 @@ import NavBar from "components/common/navbar/NavBar";
 import TabControl from "components/content/tabControl/TabControl";
 import GoodsList from "components/content/goods/GoodsList";
 import Scroll from "components/common/scroll/Scroll";
-import BackTop from "components/content/backTop/BackTop";
 
+import {backTopMixin} from 'common/mixins';
 import { getHomeMultidata, getHomeGoods } from "network/home";
-import {debounce} from "common/utils";
+// import {debounce} from "common/utils";
 
 export default {
   name: "Home",
@@ -58,7 +58,6 @@ export default {
     TabControl,
     GoodsList,
     Scroll,
-    BackTop,
   },
 
   data() {
@@ -87,6 +86,8 @@ export default {
       isTabFixed: false,
     };
   },
+  mixins:[backTopMixin],
+
   created() {
     // 请求多个数据
     this.getHomeMultidata();
@@ -125,10 +126,7 @@ export default {
       this.$refs.tabControl1.currentIndex = index;
       this.$refs.tabControl2.currentIndex = index;
     },
-    // 回到顶部
-    backClick() {
-      this.$refs.scroll.scrollTo(0, 0, 500);
-    },
+    
     // 上拉加载更多
     loadMore() {
       setTimeout(() => {
@@ -138,12 +136,7 @@ export default {
     },
     contentScroll(position) {
       // 判断backTop
-      if (position.y < -500) {
-        this.isShowBackTop = true;
-      } else {
-        this.isShowBackTop = false;
-      }
-
+      this.listenShowBackTop(position)
       // 判断tabControl2吸顶
       this.isTabFixed = -position.y > this.tabOffsetTop;
     },
