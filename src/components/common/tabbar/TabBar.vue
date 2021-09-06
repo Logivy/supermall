@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: Logivy
- * @Date: 2021-05-10 08:36:01
- * @LastEditors: Logivy
- * @LastEditTime: 2021-08-20 23:52:52
--->
 <template>
   <div id="tab-bar">
     <slot></slot>

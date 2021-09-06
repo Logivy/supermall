@@ -1,15 +1,7 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: Logivy
- * @Date: 2021-07-29 22:18:36
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-09-03 22:17:20
--->
 <template>
   <swiper class="detail-swiper">
     <swiper-item  v-for="(item, index) in topImages" :key="index">
-      <img :src="item" alt="" @load="imageLoad"/>
+      <img :src="item" alt="" />
     </swiper-item>
   </swiper>
 </template>

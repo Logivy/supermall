@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: Logivy
- * @Date: 2021-07-29 21:33:04
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-08-29 19:31:20
--->
 <template>
   <div>
     <nav-bar>

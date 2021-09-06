@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: Logivy
- * @Date: 2021-05-11 17:08:02
- * @LastEditors: Logivy
- * @LastEditTime: 2021-08-26 15:53:59
--->
 <template>
   <div class="goods-item" @click="itemClick">
     <!-- <img :src="getImg" alt="" @load="imageLoad" /> -->

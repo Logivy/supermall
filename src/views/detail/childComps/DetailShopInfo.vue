@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: Logivy
- * @Date: 2021-08-18 22:44:30
- * @LastEditors: Logivy
- * @LastEditTime: 2021-08-19 23:41:41
--->
 <template>
   <div v-if="Object.keys(shop).length !== 0" class="shop-info">
     <div class="shop-top">

@@ -1,19 +1,3 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: Logivy
- * @Date: 2021-08-26 14:38:55
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-09-03 23:07:54
--->
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: Logivy
- * @Date: 2021-08-26 14:38:55
- * @LastEditors: Logivy
- * @LastEditTime: 2021-08-26 14:56:50
--->
 <template>
   <div class="recommend-info" v-if="Object.keys(recommendList).length">
     <div class="info-title">热门推荐</div>

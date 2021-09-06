@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: Logivy
- * @Date: 2021-08-10 22:01:23
- * @LastEditors: Logivy
- * @LastEditTime: 2021-08-26 00:18:31
--->
 <template>
   <div v-if="Object.keys(goods).length !== 0" class="base-info">
       <div class="info-title">{{goods.title}}</div>

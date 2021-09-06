@@ -2,7 +2,7 @@
 <template>
   <div id="detail">
     <detail-nav-bar @titleClick="titleClick" />
-    <scroll class="wrapper" ref="scroll">
+    <scroll class="wrapper" ref="scroll" :probe-type="3" @scroll="contentScroll">
       <detail-swiper :top-images="topImages" @imageLoad="imageLoad" />
       <detail-base-info :goods="goods" />
       <detail-shop-info :shop="shop" />
@@ -136,6 +136,14 @@ export default {
     titleClick(index) {
       this.$refs.scroll.scrollTo(0, -this.themeTopYs[index] + 44, 100);
     },
+    contentScroll(position){
+      let positionY = -position.y
+      // for (let i= 0; this.themeTopYs.length;i++) {
+      //     // if(positionY >= this.themeTopYs[i] ) {
+      //     //   console.log(i)
+      //     // }
+      // }
+    }
   },
 };
 </script>

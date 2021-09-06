@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: Logivy
- * @Date: 2021-08-19 23:55:02
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-09-04 16:00:28
--->
 <template>
   <div v-if="Object.keys(imageInfo).length" class="goods-info">
     <div class="info-desc clear-fix">
@@ -23,6 +15,7 @@
         v-for="(item, index) in imageInfo.detailImage[0].list"
         :src="item"
         :key="index"
+        @load="imageLoad"
       />
     </div>
   </div>

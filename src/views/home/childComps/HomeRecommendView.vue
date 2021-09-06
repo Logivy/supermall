@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: Logivy
- * @Date: 2021-05-10 22:33:04
- * @LastEditors: Logivy
- * @LastEditTime: 2021-08-26 00:22:27
--->
 <template>
   <div class="recommend">
     <div

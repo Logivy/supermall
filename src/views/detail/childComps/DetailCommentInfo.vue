@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: Logivy
- * @Date: 2021-08-26 10:56:43
- * @LastEditors: Logivy
- * @LastEditTime: 2021-08-26 14:25:07
--->
 <template>
   <div class="comment-info" v-if="Object.keys(commentInfo).length">
     <div class="info-header">
@@ -23,16 +15,20 @@
       <p>{{ commentInfo.content }}</p>
       <div class="info-other">
         <span class="date">{{ commentInfo.created | showDate }}</span>
-        <span>{{commentInfo.style}}</span>
+        <span>{{ commentInfo.style }}</span>
       </div>
       <div class="info-imgs">
-          <img :src="item" v-for="(item,index) in commentInfo.images" :key="index">
+        <img
+          :src="item"
+          v-for="(item, index) in commentInfo.images"
+          :key="index"
+        />
       </div>
     </div>
   </div>
 </template>
 <script>
-import {formatDate} from '@/common/utils';
+import { formatDate } from "@/common/utils";
 export default {
   name: "DetailCommentInfo",
   props: {
@@ -43,12 +39,12 @@ export default {
       },
     },
   },
-  filters:{
-      showDate(value){
-       let date = new Date(value*1000);
-        return formatDate(date,'yyyy-MM-dd')
-    }
-  }
+  filters: {
+    showDate(value) {
+      let date = new Date(value * 1000);
+      return formatDate(date, "yyyy-MM-dd");
+    },
+  },
 };
 </script>
 <style scoped>
@@ -91,30 +87,30 @@ export default {
   font-size: 15px;
 }
 
-.info-content{
-    padding: 0px 5px 15px;
+.info-content {
+  padding: 0px 5px 15px;
 }
-.info-content p{
-    font-size: 14px;
-    color: #777;
-    line-height: 1.5;
-}
-
-.info-content .info-other{
-    font-size: 12px;
-    color: #999;
+.info-content p {
+  font-size: 14px;
+  color: #777;
+  line-height: 1.5;
 }
 
-.info-other .date{
-    margin-right: 8px;
-}
-.info-imgs{
-    margin-top: 10px;
+.info-content .info-other {
+  font-size: 12px;
+  color: #999;
 }
 
-.info-imgs img{
-    width: 70px;
-    height: 70px;
-    margin-right: 5px;
+.info-other .date {
+  margin-right: 8px;
+}
+.info-imgs {
+  margin-top: 10px;
+}
+
+.info-imgs img {
+  width: 70px;
+  height: 70px;
+  margin-right: 5px;
 }
 </style>

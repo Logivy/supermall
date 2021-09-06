@@ -1,11 +1,3 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: Logivy
- * @Date: 2021-05-10 09:31:22
- * @LastEditors: Logivy
- * @LastEditTime: 2021-07-29 21:26:52
- */
 import Vue from "vue";
 import Router from "vue-router";
 

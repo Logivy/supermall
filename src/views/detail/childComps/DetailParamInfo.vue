@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: Logivy
- * @Date: 2021-08-26 00:42:02
- * @LastEditors: Logivy
- * @LastEditTime: 2021-08-26 10:36:11
--->
 <template>
   <div class="param-info" v-if="Object.keys(paramInfo).length">
     <table

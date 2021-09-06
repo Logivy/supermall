@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: Logivy
- * @Date: 2021-05-16 09:36:06
- * @LastEditors: Logivy
- * @LastEditTime: 2021-08-25 21:00:22
--->
 <template>
   <div id="wrapper" ref="wrapper">
     <div id="content">

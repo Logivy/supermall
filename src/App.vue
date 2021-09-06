@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: Logivy
- * @Date: 2021-05-09 19:02:46
- * @LastEditors: Logivy
- * @LastEditTime: 2021-07-31 22:03:39
--->
 <template>
   <div id="app">
     <keep-alive exclude="Detail">

@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @version: 
- * @Author: Logivy
- * @Date: 2021-05-10 22:19:54
- * @LastEditors: Logivy
- * @LastEditTime: 2021-07-26 21:46:18
--->
 <template>
   <swiper>
     <swiper-item v-for="(item, index) in banners" :key="index">
