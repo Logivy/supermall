@@ -157,7 +157,6 @@ export default {
     },
     imageLoad() {
       this.getThemeTopY();
-      console.log(123);
     },
   },
 };

@@ -3,23 +3,26 @@
     <nav-bar class="cart-nav"
       ><div slot="center">购物车({{ cartLength }})</div></nav-bar
     >
+    <cart-list />
+    <bottom-bar />
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 import NavBar from "components/common/navbar/NavBar";
+import BottomBar from "./childComps/BottomBar";
+import CartList from "./childComps/CartList";
 
 export default {
   name: "Shopcart",
   components: {
     NavBar,
+    CartList,
+    BottomBar,
   },
   computed: {
-    // cartLength() {
-    //   return this.$store.getters.cartLength;
-    // },
-    ...mapGetters(['cartLength'])
+    ...mapGetters(["cartLength"]),
   },
 };
 </script>

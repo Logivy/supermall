@@ -13,6 +13,7 @@ export default {
       commit("addCounter", oldProduct);
     } else {
       payload.count = 1;
+      payload.checked = true;
       commit("addToCart", payload);
     }
   }

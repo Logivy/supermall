@@ -32,7 +32,9 @@ export default {
       pullUpLoad: this.pullUpLoad,
       click: true,
       // 更新自动计算image,DOM
-      observeImage: true,
+      observeImage:{
+        debounceTime:200,
+      },
       observeDOM: true,
     });
 

@@ -14,7 +14,6 @@ export default {
   background-color: #f6f6f6;
   height: 49px;
   border-top: 1px solid #eee;
-  box-shadow: 0 -1px 1px rgba(150, 150, 150, 0.8);
   
 
   /* 定位设置 */
