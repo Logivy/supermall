@@ -1,21 +1,19 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-const originalPush = Router.prototype.push
-
-Router.prototype.push = function push(location) {
-  return originalPush.call(this, location).catch(err => err)
-}
-
 // 懒加载
 const Home = () => import("views/home/Home");
 const Category = () => import("views/category/Category");
 const Shopcart = () => import("views/shopcart/Shopcart");
 const Profile = () => import("views/profile/Profile");
-const Detail = () => import('views/detail/Detail');
+const Detail = () => import("views/detail/Detail");
 // 1、安装router插件
 Vue.use(Router);
 
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 // 2、路由映射表
 const routes = [
   {
@@ -39,18 +37,16 @@ const routes = [
     component: Profile
   },
   {
-    path:"/detail/:iid",
+    path: "/detail/:iid",
     component: Detail
   }
-  
 ];
 
 // 3、创建router实例
 const router = new Router({
   routes,
-  mode:'history'
+  mode: "history"
 });
 
 // 4、导出
-export default router
-
+export default router;
