@@ -37,6 +37,7 @@ import DetailRecommendInfo from "./childComps/DetailRecommendInfo";
 import DetailBottomBar from "./childComps/DetailBottomBar";
 
 import {backTopMixin} from 'common/mixins';
+import {mapActions} from 'vuex';
 import {
   getDetail,
   getRecommend,
@@ -45,6 +46,7 @@ import {
   GoodsParam,
 } from "network/detail";
 import { debounce } from "common/utils";
+
 export default {
   name: "Detail",
   components: {
@@ -87,10 +89,11 @@ export default {
       this.themeTopYs.push(this.$refs.param.$el.offsetTop);
       this.themeTopYs.push(this.$refs.comment.$el.offsetTop);
       this.themeTopYs.push(this.$refs.recommend.$el.offsetTop);
-      console.log(this.themeTopYs);
     });
   },
   methods: {
+    ...mapActions(["addCart"]),
+    
         _getRecommentData() {
       getRecommend().then((res, err) => {
         if (err) return;
@@ -138,11 +141,7 @@ export default {
     },
     contentScroll(position){
       let positionY = -position.y
-      // for (let i= 0; this.themeTopYs.length;i++) {
-      //     // if(positionY >= this.themeTopYs[i] ) {
-      //     //   console.log(i)
-      //     // }
-      // }
+     
       this.listenShowBackTop(position);
     },
 
@@ -153,7 +152,10 @@ export default {
       obj.title = this.goods.title;
       obj.desc = this.goods.desc;
       obj.newPrice = this.goods.realPrice;
-      this.$store.dispatch("addCart",obj)
+
+      this.addCart(obj).then(res =>{
+        this.$toast.show(res)
+      })
     },
     imageLoad() {
       this.getThemeTopY();

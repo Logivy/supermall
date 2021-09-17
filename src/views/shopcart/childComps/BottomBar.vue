@@ -1,9 +1,13 @@
 <template>
   <div class="bottom-bar">
-    <CheckButton class="select-all" @checkBtnClick="checkBtnClick" :checked="isSelectAll"/>
+    <CheckButton
+      class="select-all"
+      @checkBtnClick="checkBtnClick"
+      :checked="isSelectAll"
+    />
     <span>全选</span>
     <span class="total-price">合计：￥{{ totalPrice }}</span>
-    <span class="buy">下单({{ totalPrice }})</span>
+    <span class="buy" @click="calcClick">下单({{ totalPrice }})</span>
   </div>
 </template>
 <script>
@@ -25,16 +29,14 @@ export default {
         }, 0)
         .toFixed(2);
     },
-    isSelectAll(){
-        return this.cartList.find(item =>item.checked === false) === undefined
-    }
+    isSelectAll() {
+      return this.cartList.find((item) => item.checked === false) === undefined;
+    },
   },
   methods: {
     //判断是否全选
     checkBtnClick() {
-      let isSelectAll = this.cartList.find((item) => !item.checked);
-
-      if (isSelectAll) {
+      if (this.isSelectAll) {
         this.cartList.forEach((item) => {
           item.checked = true;
         });
@@ -42,6 +44,11 @@ export default {
         this.cartList.forEach((item) => {
           item.checked = false;
         });
+      }
+    },
+    calcClick() {
+      if (!this.isSelectAll) {
+        this.$toast.show("请选择商品");
       }
     },
   },
