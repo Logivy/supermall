@@ -17,14 +17,10 @@ export default {
       default: "red",
     },
   },
-  data() {
-    return {
-      // isActive:false
-    };
-  },
+ 
   methods: {
     itemClick() {
-      this.$router.replace(this.path);
+      this.$router.push(this.path);
     },
   },
   computed: {
