@@ -1,5 +1,7 @@
 import BackTop from "@/components/content/backTop/BackTop";
-import {BACK_POSITION} from "common/const";
+import TabControl from "components/content/tabControl/TabControl";
+
+import { BACK_POSITION, POP, NEW, SELL } from "common/const";
 
 export const backTopMixin = {
   components: { BackTop },
@@ -14,6 +16,30 @@ export const backTopMixin = {
     },
     listenShowBackTop(position) {
       this.isShowBackTop = -position.y > BACK_POSITION;
+    }
+  }
+};
+
+export const tabControlMixin = {
+  components: { TabControl },
+  data() {
+    return {
+      currentType: POP
+    };
+  },
+  methods: {
+    tabClick(index) {
+      switch (index) {
+        case 0:
+          this.currentType = POP;
+          break;
+        case 1:
+          this.currentType = NEW;
+          break;
+        case 2:
+          this.currentType = SELL;
+          break;
+      }
     }
   }
 };

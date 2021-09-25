@@ -1,11 +1,3 @@
-/*
- * @Descripttion:
- * @version:
- * @Author: Logivy
- * @Date: 2021-07-29 22:05:44
- * @LastEditors: Logivy
- * @LastEditTime: 2021-08-26 14:32:26
- */
 
 import {request} from "./request";
 
