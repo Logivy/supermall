@@ -77,7 +77,7 @@ export default {
 
 #user-info .arrow-svg{
   width: 11px;
-  height: 12px;
+  height: 22px;
   margin-top: 18px;
 }
 </style>
