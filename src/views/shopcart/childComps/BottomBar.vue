@@ -36,7 +36,9 @@ export default {
   methods: {
     //判断是否全选
     checkBtnClick() {
-      if (this.isSelectAll) {
+        let isSelectAll = this.$store.getters.cartList.find(item => !item.checked);
+
+      if (isSelectAll) {
         this.cartList.forEach((item) => {
           item.checked = true;
         });
